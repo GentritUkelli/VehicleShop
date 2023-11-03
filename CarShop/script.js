@@ -189,33 +189,6 @@ $('#make-filter, #price-filter-min, #price-filter-max').on('change', applyFilter
 
 applyFilters();
 
-function updateCart() {
-  var total = 0;
-  $('#cart-list').empty();
-  $('#car-list li').each(function() {
-    ------kod
-  });
-  $('#total').text('Total: $' + total);
-}
 
-/ Checkout functionality
-        $('#checkout').on('click', function() {
-            var cartItems = $('#cart-list li');
-            if (cartItems.length === 0) {
-                alert("Your shopping cart is empty. Please add items before checkout.");
-            } else {
-                // Show sale button
-            }
-        });
-
-        // Sale functionality
-        $("#sale").on("click", function() {
-          // Hide sale button
-          $(this).hide();
-         --------kod
-          renderCars(carList);
-          updateCart();
-      });
-  });
 
         
