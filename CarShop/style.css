@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color:#3876BF;
+  color: #333;
+}
+
+header {
+  background-color: #0F2C59;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+section {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(50% - 20px);
+  flex-grow: 1; 
+}
+
+section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #0073e6;
+}
+
+button {
+  background-color: #0073e6;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.select, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select:hover, select:focus {
+  border-color: #0073e6;
+}
+
+.car-image {
+  display: block;
+  max-width: 100%;
+  border: 3px solid #0073e6;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.car-image:hover {
+  transform: scale(1.05);
+}
+
+#car-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+input[type="text"]:hover, input[type="text"]:focus,
+input[type="number"]:hover, input[type="number"]:focus,
+input[type="file"]:hover, input[type="file"]:focus {
+  border-color: #0073e6;
+}
+
+.add-to-cart:hover, .remove-from-cart:hover, #checkout:hover {
+  background-color: #0055a5;
+}
+
+.car-image:hover {
+  transform: scale(1.05);
+}
