@@ -1,81 +1,81 @@
 const cars = [
   {
-    id: '1',
-    make: 'Mercedes Benz',
-    model: 'C-Class',
+    id: "1",
+    make: "Mercedes Benz",
+    model: "C-Class (W205:2015)",
     price: 45000,
-    image: './photos/Supra.jpeg'
+    image: "photos/C-class.jpg",
   },
   {
-    id: '2',
-    make: 'BMW',
-    model: '3 Series',
+    id: "2",
+    make: "BMW",
+    model: "(3 Series G28",
     price: 42000,
-    image: ''
+    image: "photos/BMW 3 series.jpeg",
   },
   {
-    id: '3',
-    make: 'Volkswagen (VW)',
-    model: 'Golf 8',
+    id: "3",
+    make: "Volkswagen (VW)",
+    model: "Golf 8",
     price: 28000,
-    image: ''
+    image: "photos/VW Golf 8.jpg",
   },
   {
-    id: '4',
-    make: 'Ford',
-    model: 'Fusion',
+    id: "4",
+    make: "Ford",
+    model: "Fusion",
     price: 32000,
-    image: 'ford_fusion.jpg'
+    image: "photos/Ford Fusion.jpg",
   },
   {
-    id: '5',
-    make: 'Toyota',
-    model: 'Camry',
+    id: "5",
+    make: "Toyota",
+    model: "Camry",
     price: 35000,
-    image: 'toyota_camry.jpg'
+    image: "photos/Toyota Camry.png",
   },
   {
-    id: '6',
-    make: 'Tesla',
-    model: 'Model 3',
+    id: "6",
+    make: "Tesla",
+    model: "Model 3",
     price: 52000,
-    image: 'tesla_model_3.jpg'
+    image: "photos/Tesla Model 3.jpg",
   },
   {
-    id: '7',
-    make: 'Nissan',
-    model: 'Leaf',
+    id: "7",
+    make: "Nissan",
+    model: "Leaf",
     price: 29000,
-    image: 'nissan_leaf.jpg'
+    image: "photos/Nissan Leaf.jpg",
   },
   {
-    id: '8',
-    make: 'Audi',
-    model: 'A4',
+    id: "8",
+    make: "Audi",
+    model: "A4",
     price: 47000,
-    image: 'audi_a4.jpg'
+    image: "photos/Audi-A4.jpg",
   },
   {
-    id: '9',
-    make: 'Mercedes Benz',
-    model: 'E-Class',
+    id: "9",
+    make: "Mercedes Benz",
+    model: "E-Class",
     price: 55000,
-    image: 'mercedes_e_class.jpg'
+    image: "photos/Mercedes E-Class.jpg",
   },
   {
-    id: '10',
-    make: 'Chevrolet',
-    model: 'Bolt',
+    id: "10",
+    make: "Chevrolet",
+    model: "Bolt",
     price: 32000,
-    image: 'chevrolet_bolt.jpg'
+    image: "photos/Chevrolet-Bolt.jpg",
   },
   {
-    id: '11',
-    make: 'BMW',
-    model: 'i3',
+    id: "11",
+    make: "BMW",
+    model: "i3",
     price: 49000,
-    image: 'bmw_i3.jpg'
-  }
+    image: "photos/BMW i3.jpg",
+  },
 ];
 
 function addNewCar(make, model, price, image) {
@@ -84,12 +84,12 @@ function addNewCar(make, model, price, image) {
     make: make,
     model: model,
     price: price,
-    image: image
+    image: image,
   };
 
   cars.push(newCar);
 
-  const carList = $('#car-list');
+  const carList = $("#car-list");
 
   const newCarItem = `
     <li>
@@ -105,33 +105,33 @@ function addNewCar(make, model, price, image) {
   carList.append(newCarItem);
 }
 
-$('#car-form').submit(function (event) {
-  event.preventDefault(); 
+$("#car-form").submit(function (event) {
+  event.preventDefault();
 
-  const make = $('#make-input').val();
-  const model = $('#model-input').val();
-  const price = parseFloat($('#price-input').val()); 
-  const imageInput = $('#image-input')[0].files[0]; 
+  const make = $("#make-input").val();
+  const model = $("#model-input").val();
+  const price = parseFloat($("#price-input").val());
+  const imageInput = $("#image-input")[0].files[0];
 
   const reader = new FileReader();
 
   reader.onload = function () {
-    const image = reader.result; 
+    const image = reader.result;
 
     addNewCar(make, model, price, image);
 
-    $('#make-input').val('');
-    $('#model-input').val('');
-    $('#price-input').val('');
-    $('#image-input').val('');
+    $("#make-input").val("");
+    $("#model-input").val("");
+    $("#price-input").val("");
+    $("#image-input").val("");
   };
 
   reader.readAsDataURL(imageInput);
 });
 
 function displayAllCars() {
-  const carList = $('#car-list');
-  
+  const carList = $("#car-list");
+
   carList.empty();
 
   cars.forEach(function (car) {
@@ -153,21 +153,24 @@ function displayAllCars() {
 displayAllCars();
 
 function applyFilters() {
-  const selectedMake = $('#make-filter').val();
-  const minPrice = parseFloat($('#price-filter-min').val()) || 0;
-  const maxPrice = parseFloat($('#price-filter-max').val()) || Number.MAX_VALUE;
+  const selectedMake = $("#make-filter").val();
+  const minPrice = parseFloat($("#price-filter-min").val()) || 0;
+  const maxPrice = parseFloat($("#price-filter-max").val()) || Number.MAX_VALUE;
 
   const filteredCars = cars.filter(function (car) {
-    return (selectedMake === 'all' || car.make === selectedMake) &&
-           car.price >= minPrice && car.price <= maxPrice;
+    return (
+      (selectedMake === "all" || car.make === selectedMake) &&
+      car.price >= minPrice &&
+      car.price <= maxPrice
+    );
   });
 
-  const carList = $('#car-list');
+  const carList = $("#car-list");
 
   carList.empty();
 
   if (filteredCars.length === 0) {
-    carList.append('<p>No cars match the selected filters.</p>');
+    carList.append("<p>No cars match the selected filters.</p>");
   } else {
     filteredCars.forEach(function (car) {
       const carItem = `
@@ -185,10 +188,68 @@ function applyFilters() {
   }
 }
 
-$('#make-filter, #price-filter-min, #price-filter-max').on('change', applyFilters);
+$("#make-filter, #price-filter-min, #price-filter-max").on(
+  "change",
+  applyFilters
+);
 
 applyFilters();
 
+function updateCart() {
+  var total = 0;
+  $('#cart-list').empty();
+
+  $('#car-list li').each(function() {
+    var carId = $(this).find('.add-to-cart').data('id');
+    var car = cars.find(function(car) {
+      return car.id === carId;
+    });
+
+    if (car) {
+      var carPrice = car.price;
+      total += carPrice;
+
+      var cartItem = `
+        <li>
+          ${car.make} ${car.model} - $${carPrice}
+          <button class="remove-from-cart" data-id="${car.id}">Remove</button>
+        </li>
+      `;
+      $('#cart-list').append(cartItem);
+
+      $(this).remove();
+    }
+  });
+
+  $('#total').text('Total: $' + total);
+}
 
 
-        
+$("#checkout").on("click", function () {
+  var cartItems = $("#cart-list li");
+  if (cartItems.length === 0) {
+    alert("Your shopping cart is empty. Please add items before checkout.");
+  } else {
+    $("#checkout").hide();
+    $("#sale").show();
+    cartItems.remove();
+    $("#total").text("Total: $0");
+  }
+});
+
+$("#sale").on("click", function() {
+  $(this).hide();
+
+  $('#cart-list li').each(function() {
+    var carId = $(this).find('.remove-from-cart').data('id');
+    $('#car-list li').each(function() {
+      if ($(this).find('.add-to-cart').data('id') === carId) {
+        $(this).remove();
+      }
+    });
+  });
+
+  $('#cart-list').empty();
+
+  $('#total').text('Total: $0');
+});

@@ -1,123 +1,129 @@
-* {
+body, h1, h2, ul, li {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color:#3876BF;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f1f1f1;
   color: #333;
 }
 
 header {
-  background-color: #0F2C59;
-  color: white;
-  padding: 20px;
   text-align: center;
-}
-
-header h1 {
-  font-size: 28px;
-  font-weight: bold;
+  background-color: #3498db;
+  padding: 20px;
+  color: #fff;
 }
 
 main {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-}
-
-section {
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   padding: 20px;
-  margin: 10px;
-  width: calc(50% - 20px);
-  flex-grow: 1; 
 }
 
-section h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #0073e6;
+#filters, #add-car {
+  flex: 1.5;
+  padding: 30px; 
+  background-color: #fff;
+  border-radius: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+  overflow-y: auto;  
+}
+
+#cars, #cart {
+  flex: 1.5;
+  padding: 30px; 
+  background-color: #fff;
+  border-radius: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+  overflow-y: auto;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  background-color: transparent;
+  border: 2px solid #ccc;
 }
 
 button {
-  background-color: #0073e6;
+  background-color: #3498db;
   color: #fff;
-  padding: 12px 20px;
-  border: none;
   cursor: pointer;
-  border-radius: 4px;
-  margin-right: 10px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: 600;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2980b9;
 }
 
-.select, select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-select:hover, select:focus {
-  border-color: #0073e6;
+.car-info {
+  display: flex;
+  align-items: center;
 }
 
 .car-image {
-  display: block;
-  max-width: 100%;
-  border: 3px solid #0073e6;
-  border-radius: 8px;
-  transition: transform 0.3s;
+  max-width: 100px;
+  margin-right: 15px;
 }
 
-.car-image:hover {
-  transform: scale(1.05);
-}
-
-#car-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
+#total {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="file"] {
-  width: 100%;
+#checkout {
+  background-color: #e74c3c;
+}
+
+.remove-from-cart {
+  background-color: #e74c3c;
+  color: #fff;
+  margin-top: 15px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
-  margin: 5px 0;
 }
 
-input[type="text"]:hover, input[type="text"]:focus,
-input[type="number"]:hover, input[type="number"]:focus,
-input[type="file"]:hover, input[type="file"]:focus {
-  border-color: #0073e6;
+.add-to-cart {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; 
 }
 
-.add-to-cart:hover, .remove-from-cart:hover, #checkout:hover {
-  background-color: #0055a5;
-}
-
-.car-image:hover {
-  transform: scale(1.05);
+#sale {
+  background-color: #e67e22;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  display: none;
 }
