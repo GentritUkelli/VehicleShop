@@ -9,7 +9,7 @@ const cars = [
   {
     id: "2",
     make: "BMW",
-    model: "(3 Series G28",
+    model: "3 Series (G28)",
     price: 42000,
     image: "photos/BMW 3 series.jpeg",
   },
@@ -77,32 +77,17 @@ const cars = [
     image: "photos/BMW i3.jpg",
   },
 ];
+const cart = [];
 
-function addNewCar(make, model, price, image) {
+function addCar(make, model, price, image) {
   const newCar = {
-    id: String(cars.length + 1),
+    id: (cars.length + 1).toString(),
     make: make,
     model: model,
     price: price,
     image: image,
   };
-
   cars.push(newCar);
-
-  const carList = $("#car-list");
-
-  const newCarItem = `
-    <li>
-      <img src="${newCar.image}" alt="Car image" class="car-image">
-      <div class="car-info">
-        <h3>${newCar.make} ${newCar.model}</h3>
-        <p>Price: $${newCar.price}</p>
-        <button class="add-to-cart" data-id="${newCar.id}">Add to Cart</button>
-      </div>
-    </li>
-  `;
-
-  carList.append(newCarItem);
 }
 
 $("#car-form").submit(function (event) {
@@ -118,12 +103,14 @@ $("#car-form").submit(function (event) {
   reader.onload = function () {
     const image = reader.result;
 
-    addNewCar(make, model, price, image);
+    addCar(make, model, price, image);
 
     $("#make-input").val("");
     $("#model-input").val("");
     $("#price-input").val("");
     $("#image-input").val("");
+
+    displayAllCars();
   };
 
   reader.readAsDataURL(imageInput);
@@ -148,9 +135,13 @@ function displayAllCars() {
 
     carList.append(carItem);
   });
-}
 
-displayAllCars();
+  // Event listener for adding a car to the cart
+  $("#car-list").on("click", ".add-to-cart", function () {
+    const carId = $(this).data("id");
+    addToCart(carId);
+  });
+}
 
 function applyFilters() {
   const selectedMake = $("#make-filter").val();
@@ -165,6 +156,14 @@ function applyFilters() {
     );
   });
 
+  displayFilteredCars(filteredCars);
+}
+
+$("#make-filter, #price-filter-min, #price-filter-max").on("change", applyFilters);
+
+applyFilters();
+
+function displayFilteredCars(filteredCars) {
   const carList = $("#car-list");
 
   carList.empty();
@@ -188,68 +187,77 @@ function applyFilters() {
   }
 }
 
-$("#make-filter, #price-filter-min, #price-filter-max").on(
-  "change",
-  applyFilters
-);
+function updateShoppingCart() {
+  const total = cart.reduce((acc, car) => acc + car.price, 0);
 
-applyFilters();
+  const cartList = $("#cart-list");
 
-function updateCart() {
-  var total = 0;
-  $('#cart-list').empty();
+  cartList.empty();
 
-  $('#car-list li').each(function() {
-    var carId = $(this).find('.add-to-cart').data('id');
-    var car = cars.find(function(car) {
-      return car.id === carId;
-    });
-
-    if (car) {
-      var carPrice = car.price;
-      total += carPrice;
-
-      var cartItem = `
-        <li>
-          ${car.make} ${car.model} - $${carPrice}
+  cart.forEach(function (car) {
+    const cartItem = `
+      <li data-id="${car.id}">
+        <img src="${car.image}" alt="Car image" class="cart-image">
+        <div class="cart-info">
+          <h3>${car.make} ${car.model}</h3>
+          <p>Price: $${car.price}</p>
           <button class="remove-from-cart" data-id="${car.id}">Remove</button>
-        </li>
-      `;
-      $('#cart-list').append(cartItem);
+        </div>
+      </li>
+    `;
 
-      $(this).remove();
-    }
+    cartList.append(cartItem);
   });
 
-  $('#total').text('Total: $' + total);
+  $("#total").text(`Total: $${total}`);
 }
 
+// Event listener for removing a car from the cart
+$("#cart-list").on("click", ".remove-from-cart", function () {
+  const carId = $(this).data("id");
+  removeFromCart(carId);
+  updateShoppingCart();
+  displayAllCars();
+});
+
+$("#sale").on("click", function () {
+  const selectedCarIds = cart.map(item => item.id);
+  cars = cars.filter(car => !selectedCarIds.includes(car.id));
+  cart.length = 0;
+  updateShoppingCart();
+  displayAllCars();
+  $("#sale").hide();
+});
+
+function addToCart(carId) {
+  const selectedCar = cars.find(car => car.id === carId);
+
+  const isInCart = cart.some(item => item.id === selectedCar.id);
+
+  if (!isInCart) {
+    cart.push(selectedCar);
+    updateShoppingCart();
+  }
+}
+
+function removeFromCart(carId) {
+  const selectedCar = cart.find(item => item.id === carId);
+  const carIndex = cart.indexOf(selectedCar);
+
+  if (carIndex !== -1) {
+    cart.splice(carIndex, 1);
+    updateShoppingCart();
+    // displayAllCars(); // No need to update the entire car list when removing from the cart
+  }
+}
 
 $("#checkout").on("click", function () {
-  var cartItems = $("#cart-list li");
-  if (cartItems.length === 0) {
-    alert("Your shopping cart is empty. Please add items before checkout.");
-  } else {
-    $("#checkout").hide();
+  if (cart.length > 0) {
     $("#sale").show();
-    cartItems.remove();
-    $("#total").text("Total: $0");
+    $("#checkout").hide();
+  } else {
+    alert("Your shopping cart is empty. Please add items before checkout.");
   }
 });
 
-$("#sale").on("click", function() {
-  $(this).hide();
-
-  $('#cart-list li').each(function() {
-    var carId = $(this).find('.remove-from-cart').data('id');
-    $('#car-list li').each(function() {
-      if ($(this).find('.add-to-cart').data('id') === carId) {
-        $(this).remove();
-      }
-    });
-  });
-
-  $('#cart-list').empty();
-
-  $('#total').text('Total: $0');
-});
+displayAllCars();
