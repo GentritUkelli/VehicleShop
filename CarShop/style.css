@@ -81,29 +81,29 @@ button:hover {
 
 .car-info {
   display: flex;
-  flex-direction: column; /* Change the flex direction to column */
-  align-items: flex-start; /* Align items to the start of the column */
+  flex-direction: column; 
+  align-items: flex-start;  
   font-size: 15px;
 }
 
 .car-image {
-  max-width: 150px; /* Adjust the size of the image */
+  max-width: 150px;  
   margin-right: 15px;
 }
 
 .make, .model, .price {
-  font-size: 15px; /* Adjust the font size */
-  margin-bottom: 5px; /* Add margin-bottom to create separation */
+  font-size: 15px;  
+  margin-bottom: 5px;  
 }
 .add-to-cart {
   background-color: #27ae60;
   color: #fff;
   border: none;
-  padding: 10px; /* Adjust the padding */
+  padding: 10px;  
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px; /* Adjust the margin */
-  font-size: 15px; /* Add font size to keep it standard */
+  margin-top: 10px;  
+  font-size: 15px;  
 }
 
 #total {
