@@ -24,21 +24,21 @@ main {
 
 #filters, #add-car {
   flex: 1.5;
-  padding: 30px; 
+  padding: 30px;
   background-color: #fff;
   border-radius: 10px;
   margin-right: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-  overflow-y: auto;  
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 
 #cars, #cart {
   flex: 1.5;
-  padding: 30px; 
+  padding: 30px;
   background-color: #fff;
   border-radius: 10px;
   margin-right: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
 }
 
@@ -81,12 +81,29 @@ button:hover {
 
 .car-info {
   display: flex;
-  align-items: center;
+  flex-direction: column; /* Change the flex direction to column */
+  align-items: flex-start; /* Align items to the start of the column */
+  font-size: 15px;
 }
 
 .car-image {
-  max-width: 100px;
+  max-width: 150px; /* Adjust the size of the image */
   margin-right: 15px;
+}
+
+.make, .model, .price {
+  font-size: 15px; /* Adjust the font size */
+  margin-bottom: 5px; /* Add margin-bottom to create separation */
+}
+.add-to-cart {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px; /* Adjust the padding */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Adjust the margin */
+  font-size: 15px; /* Add font size to keep it standard */
 }
 
 #total {
@@ -105,16 +122,6 @@ button:hover {
   padding: 10px;
   border: none;
   border-radius: 5px;
-}
-
-.add-to-cart {
-  background-color: #27ae60;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px; 
 }
 
 #sale {

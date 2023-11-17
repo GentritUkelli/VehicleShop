@@ -1,56 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Car Shop App</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <title>Car Shop App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<header>
-		<h1>Vehicle Shop</h1>
-	</header>
-	<main>
-		<section id="filters">
-			<h2>Filters</h2>
-			<label for="make-filter">Make:</label>
-			<select id="make-filter">
+    <header>
+        <h1>Vehicle Shop
+        </h1>
+    </header>
+    <main>
+        <section id="filters">
+            <h2>Filters</h2>
+            <label for="make-filter">Make:</label>
+            <select id="make-filter">
                 <option value="all">All</option>
-			</select>
-			<label for="price-filter">Price Range:</label>
-			<input type="number" id="price-filter-min" placeholder="Min">
-			<input type="number" id="price-filter-max" placeholder="Max">
-		</section>
-		<section id="cars" class="cars">
-			<h2>Cars</h2>
-			<ul id="car-list">
-				<!-- Cars will be dynamically generated here -->
-			</ul>
-		</section>
-		<section id="cart" class="cart">
-			<h2>Shopping Cart</h2>
-			<ul id="cart-list">
-				<!-- Items in the cart will be dynamically generated here -->
-			</ul>
-			<p id="total">Total: $0</p>
-			<button class="checkout-button" id="checkout">Checkout</button>
-			<button class="remove-from-cart" data-id="car-id">Remove</button>
+                <option value="toyota">Toyota</option>
+                <option value="honda">Honda</option>
+                <option value="ford">Ford</option>
+                <option value="mercedes-benz">Mercedes Benz</option>
+                <option value="bmw">BMW</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="audi">Audi</option>
+                <option value="tesla">Tesla</option>
+                <option value="nissan">Nissan</option>
+            </select>
+            <label for="price-filter">Price Range:</label>
+            <input type="number" id="price-filter-min" placeholder="Min">
+            <input type="number" id="price-filter-max" placeholder="Max">
+        </section>
+        <section id="cars">
+            <h2>Cars</h2>
+            <ul id="car-list">
+                <!-- Cars will be dynamically generated here -->
+            </ul>
+        </section>
+        <section id="cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-list">
+                <!-- Items in the cart will be dynamically generated here -->
+            </ul>
+            <p id="total">Total: $0</p>
+            <button id="checkout">Checkout</button>
             <button id="sale" style="display:none;">Sale</button>
-		</section>
-		<section id="add-car">
-			<h2>Add a New Car</h2>
-			<form id="car-form">
-				<label for="make-input">Type</label>
-				<input type="text" id="make-input" required>
-				<label for="model-input">Model</label>
-				<input type="text" id="model-input" required>
-				<label for="price-input">Price</label>
-				<input type="number" id="price-input" required>
-				<label for="image-input">Image</label>
-			     <input type="file" id="image-input" accept="image/*" required>
-				<button type="submit">Add Car</button>
-			</form>
-		</section>
-	</main>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="script.js"></script>
+        </section>
+        <section id="add-car">
+            <h2>Add a New Car</h2>
+            <form id="car-form">
+                <label for="make-input">Type</label>
+                <input type="text" id="make-input" required>
+                <label for="model-input">Model</label>
+                <input type="text" id="model-input" required>
+                <label for="price-input">Price</label>
+                <input type="number" id="price-input" required>
+                <label for="image-input">Image</label>
+                 <input type="file" id="image-input" accept="image/*" required>
+                <button type="submit">Add Car</button>
+            </form>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
